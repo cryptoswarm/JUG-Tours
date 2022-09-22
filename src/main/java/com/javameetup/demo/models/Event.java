@@ -1,4 +1,4 @@
-package models;
+package com.javameetup.demo.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

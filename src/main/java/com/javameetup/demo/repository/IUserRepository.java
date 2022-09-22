@@ -1,6 +1,7 @@
-package repository;
+package com.javameetup.demo.repository;
 
-import models.User;
+
+import com.javameetup.demo.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

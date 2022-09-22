@@ -1,4 +1,4 @@
-package models;
+package com.javameetup.demo.models;
 import lombok.NonNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
