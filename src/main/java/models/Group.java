@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
+//@RequiredArgsConstructor(staticName = "getInstance")
 @RequiredArgsConstructor
 @Entity
 @Table(name = "user_group")
@@ -17,8 +18,10 @@ public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     @NonNull
     private String name;
+
     private String city;
     private String stateOrProvince;
     private String country;
@@ -29,6 +32,5 @@ public class Group {
 
     @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private Set<Event> events;
-
 
 }
