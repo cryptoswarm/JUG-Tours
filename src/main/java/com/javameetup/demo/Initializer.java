@@ -1,8 +1,12 @@
-import models.Event;
-import models.Group;
+package com.javameetup.demo;
+
+
+import com.javameetup.demo.models.Event;
+import com.javameetup.demo.models.Group;
+import com.javameetup.demo.repository.IGroupRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import repository.IGroupRepository;
+
 
 import java.time.Instant;
 import java.util.Collections;
