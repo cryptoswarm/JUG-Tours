@@ -1,19 +1,22 @@
 package com.javameetup.demo.securityConfig;
 
-
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SimpleSavedRequest;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 
+@Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
 
@@ -21,12 +24,14 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
 
         httpSecurity.authorizeHttpRequests((authorize) ->
-                authorize.antMatchers("/**/*.{js,html,css}").permitAll()
-                         .antMatchers("/", "/api/user").permitAll()
+                authorize.requestMatchers("/", "/index.html", "/static/**",
+                                "/*.ico", "/*.json", "/*.png").permitAll()
+                         .requestMatchers("/api/user").permitAll()
                          .anyRequest().authenticated()
                 ).csrf((csrf) ->
                     csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                ).oauth2Login();
+                            .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
+                ).oauth2Login(Customizer.withDefaults());
 
         return httpSecurity.build();
     }

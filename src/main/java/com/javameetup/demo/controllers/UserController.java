@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +19,6 @@ import java.util.Map;
 public class UserController {
 
     private ClientRegistration registration;
-
 
     public UserController(ClientRegistrationRepository registrations) {
         this.registration = registrations.findByRegistrationId("okta");

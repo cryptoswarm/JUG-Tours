@@ -30,13 +30,17 @@ public class Initializer implements CommandLineRunner {
         );
 
         Group group = groupRepository.findByName("Seattle JUG");
-        Event event = Event.builder().title("Micro Frontends for Java Developers")
-                                 .description("JHipster now has microfrontend support!")
-                .date(Instant.parse("2022-11-14T17:00:00.000Z"))
-                .build();
+
+        Event event = new Event.EventBuilder()
+                                .withTitle("Micro Frontends for Java Developers")
+                                .withDescription("JHipster now has microfrontend support!")
+                                .withDate(Instant.parse("2022-11-14T17:00:00.000Z"))
+                                .Build();
+
         group.setEvents(Collections.singleton(event));
 
         groupRepository.save(group);
+        //for debugging purpose
         groupRepository.findAll().forEach(System.out::println);
     }
 }
