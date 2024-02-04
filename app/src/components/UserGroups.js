@@ -14,7 +14,7 @@ const GroupList = () => {
   useEffect(() => {
     setLoading(true);
 
-    fetch('api/groups')
+    fetch('api/me/groups')
       .then(response => response.json())
       .then(data => {
         console.log("Fetched groups are : ",data);
